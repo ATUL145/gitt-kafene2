@@ -12,37 +12,78 @@ logout.addEventListener("click", (e) => {
 
 
 
-const table = document.querySelector(".OrderTable")
-const request = fetch(`https://5fc1a1c9cb4d020016fe6b07.mockapi.io/api/v1/orders`)
-const promisedata = request.then(response => response.json()).then((data) => {
+let orders = [];
+let filteredOrders = [];
+let filterOptionsByDefault = ["New", "Packed", "InTransit", "Delivered"];
+let filtedOptionsSelectedByUser = [];
 
+const table = document.querySelector(".OrderTable__body");
+const request = fetch(
+    `https://5fc1a1c9cb4d020016fe6b07.mockapi.io/api/v1/orders`
+);
+const promisedata = request
+    .then((response) => response.json())
+    .then((data) => {
+        orders = data;
+        filteredOrders = data;
+        filtedOptionsSelectedByUser = filterOptionsByDefault;
+        renderOrders(data);
+    });
 
+function renderOrders(users) {
+    table.innerHTML = "";
+    users.forEach((data) => {
+        const html = `<tr class="tabledata">
+    <td class="tabledatafont id">${data.id}</td>
+    <td class="tabledatafontdark name">${data.customerName}</td>
+    <td class="tabledatafontdark date ">${data.orderDate}<p class="time">${data.orderTime}</p></td>
+    <td  class="tabledatafont amount">$${data.amount}</td>
+    <td class="tabledatafontdark status">${data.orderStatus}</td>
+    </tr>`;
 
-
-
-
-
-
-
-    //render
-    for (let i = 0; i <= 10; i++) { render(data[i]) }
-
-    var tabledata = document.querySelectorAll(".tabledata")
-
-
+        table.insertAdjacentHTML("beforeend", html);
+    });
 }
-)
-const render = function (data) {
-    const html = `<tr class="tabledata">
-   <td class="tabledatafont id">${data.id}</td>
-   <td class="tabledatafontdark name">${data.customerName}</td>
-   <td class="tabledatafontdark date ">${data.orderDate}<p class="time">${data.orderTime}</p></td>
-   <td  class="tabledatafont amount">$${data.amount}</td>
-   <td class="tabledatafontdark status">${data.orderStatus}</td>
-   </tr>`
 
-    table.insertAdjacentHTML("beforeend", html)
+// checkbox handling
+const newCheckbox = document.querySelector("#new");
+const packedCheckbox = document.querySelector("#packed");
+const intransitCheckbox = document.querySelector("#intransit");
+const deliveredCheckbox = document.querySelector("#delivered");
 
+newCheckbox.addEventListener("click", (e) => {
+    const { value, checked } = e.target;
+    handleCheckboxFilter(value, checked);
+});
+packedCheckbox.addEventListener("click", (e) => {
+    const { value, checked } = e.target;
+    handleCheckboxFilter(value, checked);
+});
+intransitCheckbox.addEventListener("click", (e) => {
+    const { value, checked } = e.target;
+    handleCheckboxFilter(value, checked);
+});
+deliveredCheckbox.addEventListener("click", (e) => {
+    const { value, checked } = e.target;
+    handleCheckboxFilter(value, checked);
+});
+
+function handleCheckboxFilter(value, checked) {
+    if (checked) {
+        filtedOptionsSelectedByUser.push(value);
+    } else {
+        filtedOptionsSelectedByUser.splice(
+            filtedOptionsSelectedByUser.indexOf(value),
+            1
+        );
+    }
+
+    filteredOrders = orders.filter((order) => {
+        const { orderStatus } = order;
+        return filtedOptionsSelectedByUser.indexOf(orderStatus) !== -1;
+    });
+
+    renderOrders(filteredOrders);
 }
 //fetched data from api 
 //fetched data from api 

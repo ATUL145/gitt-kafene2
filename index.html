@@ -6,75 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title class="spin">Kafene</title>
-    <link rel="icon" href="../image/logo.58169365.png">
-    <link rel="stylesheet" href="./user.css">
+    <link rel="icon" href="./image/logo.58169365.png">
+    <link rel="stylesheet" href="./login.css">
     <script src="https://kit.fontawesome.com/40a89b9b78.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
+    <div id="loader" class="center" style="  display: none;"></div>
+
+
+
+    <!--sticky header with shadow -->
+
+
     <div class="header">
         <div class="nav">
             <div class="leftItem">
-                <img src="../image/logo.58169365.png" alt="" class="logo">
+                <img src="./image/logo.58169365.png" alt="" class="logo">
                 <p class="logoTitle">Kafene</p>
             </div>
             <div class="rightItem">
                 <ul class="items">
-                    <li class="item"><a href="#" id="one" class="loginAnchor orders ">Orders</a></li>
-                    <li class="item"><a href="#" id="two" class="loginAnchor products">Products</a></li>
-                    <li class="item"><a href="#" id="three" class="loginAnchor users">Users</a></li>
+                    <li class="item"><a href="#" id="one" class="loginAnchor">Orders</a></li>
+                    <li class="item"><a href="#" id="two" class="loginAnchor">Products</a></li>
+                    <li class="item"><a href="#" id="three" class="loginAnchor">Users</a></li>
                 </ul>
             </div>
         </div>
+    </div>
 
-        <div class="logout">
-            <p>Logout &nbsp<span> <i class="fas fa-sign-out"></i></span></p>
 
+    <!--sticky header done with shadow -->
+
+
+    <!--login form with submit button -->
+
+    <div class="formContainer">
+        <form action="order.html" class="login formvalidation" method="get" target="_self">
+            <h1 class="signIn">Sign In</h1>
+            <input type="text" name="username" class="username" value="" placeholder="Enter Username" required autofocus
+                autocomplete="on"><br>
+            <input type="password" name="password" class="password" value="" placeholder="Enter Password" required
+                autocomplete="on"><br>
+            <input type="submit" value="Login" name="login" class="loginBtn">
+        </form>
+    </div>
+
+
+    <!--increment counter-->
+    <div class="social">
+        <div class="counter-container">
+            <i class="fab fa-twitter fa-3x"></i>
+            <div class="counter" data-target="12000"></div>
+            <span>Twitter Followers</span>
+        </div>
+
+        <div class="counter-container">
+            <i class="fab fa-youtube fa-3x"></i>
+            <div class="counter" data-target="5000"></div>
+            <span>YouTube Subscribers</span>
+        </div>
+
+        <div class="counter-container">
+            <i class="fab fa-facebook fa-3x"></i>
+            <div class="counter" data-target="7500"></div>
+            <span>Facebook Fans</span>
         </div>
     </div>
 
-    <!--user main search-->
-    <div class="userlistContainer">
-        <h1 class="maintitle">Users</h1>
-        <div class="formwrapper">
-            <form action="" class="formContainer">
-                <input type="search" placeholder="Search by Name" class="searchbox">
-                <input type="reset" class="resetBtn" value="Reset">
-            </form>
-        </div>
-    </div>
-
-    <!--user main profiles-->
-
-    <div class="tableContainer">
-
-        <table class="OrderTable">
-            <tr class="orderRow">
-                <th class="tableheader" id="id">ID</th>
-                <th class="tableheader" id="customer">User Avatar</th>
-                <th class="tableheader" id="date">Full Name</th>
-                <th class="tableheader" id="amount">DoB</th>
-                <th class="tableheader" id="status">Gender</th>
-                <th class="tableheader" id="status">Current Location</th>
-            </tr>
-
-            <!-- <tr class="tabledata">
-                    <td id="id" class="tabledatafont">Akay</td>
-                    <td class="tabledatafontdark">Sonu</td>
-                    <td class="tabledatafontdark">Yadav</td>
-                    <td id="amount" class="tabledatafont">Papa</td>
-                    <td class="tabledatafontdark">Mummy</td>
-                </tr> -->
-
-
-
-        </table>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <script src="./user.js"></script>
+    <script src="./login.js"></script>
 </body>
 
 </html>
